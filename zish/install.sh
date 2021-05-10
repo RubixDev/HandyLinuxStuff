@@ -35,10 +35,10 @@ wget https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zis
 mv zish.zsh-theme ~/.oh-my-zsh/custom/ || exit 1
 
 # Apply plugins
-perl -i -pe 's/^(plugins=\(.*?)\)/\1 zsh-autosuggestions history-substring-search zsh-syntax-highlighting)/g' ~/.zshrc || exit 1
+perl -i -p -e 's/^(plugins=\(.*?)\)/\1 zsh-autosuggestions history-substring-search zsh-syntax-highlighting)/g' ~/.zshrc || exit 1
 
 # Set theme
-perl -i -pe 's/^ZSH_THEME="zish"' ~/.zshrc || exit 1
+perl -i -p -e 's/^ZSH_THEME.*$/ZSH_THEME="zish"/g' ~/.zshrc || exit 1
 echo "ZSH_AUTOSUGGEST_STRATEGY=(history completion)" >> ~/.zshrc || exit 1
 
 
