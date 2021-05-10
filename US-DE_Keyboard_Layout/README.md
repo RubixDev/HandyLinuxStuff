@@ -22,6 +22,11 @@ A QWERTY layout with german Umlaut keys
 ```
 
 ## Installation
-1. Execute `wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | sh` as root, e.g. with `sudo`.
-2. Select the layout in your system settings
-
+#### 1.
+Execute
+```
+wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | sh
+``` 
+as root, e.g. with `sudo`.
+#### 2.
+Select the layout in your system settings
