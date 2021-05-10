@@ -2,7 +2,7 @@
 
 # Check dependencies
 zsh --version > /dev/null || {
-  echo 'zsh is not installed. Please make sure it is correctly installed on your system.'
+  echo 'zsh is not installed. Please make sure it is correctly installed on your system. A list on how to install it on many distributions can be found here: https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#how-to-install-zsh-on-many-platforms'
   exit 127
 }
 
@@ -42,9 +42,15 @@ perl -i -p -e 's/^ZSH_THEME.*$/ZSH_THEME="zish"/g' ~/.zshrc || exit 1
 echo "ZSH_AUTOSUGGEST_STRATEGY=(history completion)" >> ~/.zshrc || exit 1
 
 echo "ZSH_HIGHLIGHT_STYLES[arg0]=fg=4" >> ~/.zshrc || exit 1
-echo "ZSH_HIGHLIGHT_STYLES[precommand]=fg=4" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[command]=fg=4" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[alias]=fg=4" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=4" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[builtin]=fg=5,bold" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[default]=fg=12" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[path]=fg=12" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=14" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[assign]=fg=6" >> ~/.zshrc || exit 1
 
 
 echo "Installation finished. You can set zsh as your default shell using 'chsh -s (\$which zsh)'"
