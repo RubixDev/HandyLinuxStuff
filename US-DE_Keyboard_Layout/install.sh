@@ -5,7 +5,7 @@ perl -0777 -i -p -e 's/xkb_symbols "us_de"[\s\S]*?\n};\n?//g' /usr/share/X11/xkb
 
 # Add layout to US layout file
 echo '' >> /usr/share/X11/xkb/symbols/us || exit 1
-cat layout.c >> /usr/share/X11/xkb/symbols/us || exit 1
+wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/layout.c >> /usr/share/X11/xkb/symbols/us || exit 1
 
 # Remove layout from evdev.xml if present
 perl -0777 -i -p -e 's/<variant>[\s\S]*?<description>QWERTY with german Umlaut keys<\/description>[\s\S]*?<\/variant>\n?\s*//g' /usr/share/X11/xkb/rules/evdev.xml || exit 1

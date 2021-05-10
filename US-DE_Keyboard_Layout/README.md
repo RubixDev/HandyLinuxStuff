@@ -22,10 +22,6 @@ A QWERTY layout with german Umlaut keys
 ```
 
 ## Installation
-1. Download the `layout.c` and `install.sh` files.
-    1. `wget https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh`
-    2. `wget https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/layout.c`
-2. Make `install.sh` executable: `chmod +x install.sh`
-3. Execute `install.sh` as root, e.g. `sudo ./install.sh`
-4. Select the layout in your system settings
+1. Execute `wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | sh` as root, e.g. with `sudo`.
+2. Select the layout in your system settings
 
