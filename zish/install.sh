@@ -41,6 +41,11 @@ perl -i -p -e 's/^(plugins=\(.*?)\)/\1 zsh-autosuggestions history-substring-sea
 perl -i -p -e 's/^ZSH_THEME.*$/ZSH_THEME="zish"/g' ~/.zshrc || exit 1
 echo "ZSH_AUTOSUGGEST_STRATEGY=(history completion)" >> ~/.zshrc || exit 1
 
+echo "ZSH_HIGHLIGHT_STYLES[arg0]=fg=4" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[precommand]=fg=4" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=4" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[default]=fg=12" >> ~/.zshrc || exit 1
+
 
 echo "Installation finished. You can set zsh as your default shell using 'chsh -s (\$which zsh)'"
 
