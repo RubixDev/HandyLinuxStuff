@@ -1,5 +1,3 @@
-# ZSH Theme - Based on the lukerandall theme
-
 function my_git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   GIT_STATUS=$(git_prompt_status)
@@ -31,7 +29,7 @@ _fishy_collapsed_wd() {
 # Test to see if user is root
 if [[ $EUID == 0 ]]; then
   local dir='%{$fg[red]%}$(_fishy_collapsed_wd)%{$reset_color%} '
-	local arrow='# '
+	local arrow='%B#%b '
 else
   local dir='%{$fg[green]%}$(_fishy_collapsed_wd)%{$reset_color%} '
 	local arrow='%B»%b '
@@ -40,9 +38,6 @@ fi
 local host='%{$fg[yellow]%}%m '
 
 PROMPT=$name$host$dir$gitpinfo$error$arrow
-
-# Shows time at end of prompt line
-#RPROMPT='%t'
 
 # Shows return arrow when output does not end in newline
 PROMPT_EOL_MARK='↵ '
