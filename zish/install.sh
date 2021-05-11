@@ -45,12 +45,13 @@ echo "ZSH_HIGHLIGHT_STYLES[arg0]=fg=4" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[command]=fg=4" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[alias]=fg=4" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=4" >> ~/.zshrc || exit 1
-echo "ZSH_HIGHLIGHT_STYLES[builtin]=fg=5,bold" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[precommand]=fg=4,bold" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[builtin]=fg=6,bold" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[default]=fg=12" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[path]=fg=12" >> ~/.zshrc || exit 1
-echo "ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=14" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=5" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold" >> ~/.zshrc || exit 1
-echo "ZSH_HIGHLIGHT_STYLES[assign]=fg=6" >> ~/.zshrc || exit 1
+echo "ZSH_HIGHLIGHT_STYLES[assign]=fg=14" >> ~/.zshrc || exit 1
 
 
 echo "Installation finished. You can set zsh as your default shell using 'chsh -s (\$which zsh)'"
