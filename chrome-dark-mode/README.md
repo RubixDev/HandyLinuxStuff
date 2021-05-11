@@ -6,7 +6,7 @@ This however will be reset everytime Chrome updates. This is what this script is
 It will add a cron job to the root user, which will try to edit this file every five minutes, in case Chrome had an update.
 
 ## Installation
-To execute the script once and add the cron job run one of the following commands as root, e.g. with `sudo`:
+To execute the script once and add the cron job run one of the following commands as root, e.g. with `sudo su -c "COMMAND_HERE"`:
 ```bash
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/chrome-dark-mode/install.sh | bash
 ```
