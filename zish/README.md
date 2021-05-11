@@ -6,9 +6,9 @@ If you only want the theme and already have `oh-my-zsh` installed, simply downlo
 Alternatively you can use the install script, which automatically installs `oh-my-zsh` and the required plugins, and applies the theme all on its own.
 For that you can simply execute
 ```
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/install.sh | sh
+wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/install.sh | bash
 ```
 or
 ```
-curl -fsSL https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/install.sh | bash
 ```
