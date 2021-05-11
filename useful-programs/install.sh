@@ -7,7 +7,7 @@ fi
 
 apt update
 apt upgrade -y
-apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk openjfx python3.9 python3-pip python3-tk lolcat cmatrix fortune cowsay tmux snapd zsh wine bat figlet -y || exit 1
+apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk openjfx python3.9 python3-pip python3-tk lolcat cmatrix fortune cowsay tmux snapd zsh wine bat figlet tree -y || exit 1
 
 # Install bashtop
 pip3 install bpytop --upgrade
