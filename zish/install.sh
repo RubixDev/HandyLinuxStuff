@@ -29,8 +29,8 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting || exit 1
 
 # Install theme
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zish.zsh-theme > ~/.oh-my-zsh/custom/zish.zsh-theme || {
-  curl -fsSL https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zish.zsh-theme > ~/.oh-my-zsh/custom/zish.zsh-theme || exit 1
+wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zish.zsh-theme > ~/.oh-my-zsh/custom/themes/zish.zsh-theme || {
+  curl -fsSL https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zish.zsh-theme > ~/.oh-my-zsh/custom/themes/zish.zsh-theme || exit 1
 }
 
 # Apply plugins
