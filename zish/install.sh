@@ -53,5 +53,5 @@ echo "ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold" >> ~/.zshrc || exi
 echo "ZSH_HIGHLIGHT_STYLES[assign]=fg=14" >> ~/.zshrc || exit 1
 
 
-echo "Installation finished. You can set zsh as your default shell using 'chsh -s (\$which zsh)'"
+echo "Installation finished. You can set zsh as your default shell using 'chsh -s $(which zsh)'"
 
