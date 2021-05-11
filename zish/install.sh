@@ -29,10 +29,9 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting || exit 1
 
 # Install theme
-wget https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zish.zsh-theme || {
-  curl https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zish.zsh-theme || exit 1
+wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zish.zsh-theme > ~/.oh-my-zsh/custom/zish.zsh-theme || {
+  curl https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/zish.zsh-theme > ~/.oh-my-zsh/custom/zish.zsh-theme || exit 1
 }
-mv zish.zsh-theme ~/.oh-my-zsh/custom/ || exit 1
 
 # Apply plugins
 perl -i -p -e 's/^(plugins=\(.*?)\)/\1 zsh-autosuggestions history-substring-search zsh-syntax-highlighting)/g' ~/.zshrc || exit 1
