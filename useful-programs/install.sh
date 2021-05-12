@@ -13,7 +13,7 @@ apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk 
 pip3 install bpytop --upgrade
 
 # Install bat
-curl -sL -o~/bat_0.18.0_amd64.deb https://github.com/sharkdp/bat/releases/download/v0.18.0/bat_0.18.0_amd64.deb
+curl -L -o ~/bat_0.18.0_amd64.deb https://github.com/sharkdp/bat/releases/download/v0.18.0/bat_0.18.0_amd64.deb
 dpkg -i ~/bat_0.18.0_amd64.deb
 rm ~/bat_0.18.0_amd64.deb
 
