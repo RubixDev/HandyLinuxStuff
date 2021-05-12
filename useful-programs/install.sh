@@ -7,10 +7,15 @@ fi
 
 apt update
 apt upgrade -y
-apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk openjfx python3.9 python3-pip python3-tk lolcat cmatrix fortune cowsay tmux snapd zsh wine bat figlet tree -y || exit 1
+apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk openjfx python3.9 python3-pip python3-tk lolcat cmatrix fortune cowsay tmux snapd zsh wine figlet tree -y || exit 1
 
 # Install bashtop
 pip3 install bpytop --upgrade
+
+# Install bat
+curl -sL -o~/bat_0.18.0_amd64.deb https://github.com/sharkdp/bat/releases/download/v0.18.0/bat_0.18.0_amd64.deb
+dpkg -i ~/bat_0.18.0_amd64.deb
+rm ~/bat_0.18.0_amd64.deb
 
 # Install keyboard layout
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | bash
@@ -31,7 +36,6 @@ getent passwd | while IFS=: read -r name password uid gid gecos home shell; do
       su -c "echo 'set -g default-terminal \"screen-256color\"' > ~/.tmux.conf" $name
 
       # Setup aliases
-      su -c "echo \"alias bat='batcat'\" >> ~/.zshrc" $name
       su -c "echo \"alias tmux='tmux -2'\" >> ~/.zshrc" $name
       su -c "echo \"alias zalias='vim ~/.zshrc'\" >> ~/.zshrc" $name
       su -c "echo \"alias setclip='xclip -selection c'\" >> ~/.zshrc" $name
