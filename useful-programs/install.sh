@@ -7,7 +7,7 @@ fi
 
 apt update
 apt upgrade -y
-apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk openjfx python3.9 python3-pip python3-tk lolcat cmatrix fortune cowsay tmux snapd zsh wine figlet tree -y || exit 1
+apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk openjfx python3.9 python3-pip python3-tk lolcat cmatrix fortune cowsay tmux snapd zsh wine figlet tree terminator -y || exit 1
 
 # Install bashtop
 pip3 install bpytop --upgrade
@@ -25,6 +25,12 @@ wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-D
 getent passwd | while IFS=: read -r name password uid gid gecos home shell; do
   if [ -d "$home" ] && [ "$(stat -c %u "$home")" = "$uid" ]; then
     if [ ! -z "$shell" ] && [ "$shell" != "/bin/false" ] && [ "$shell" != "/usr/sbin/nologin" ]; then
+      # Configure terminator
+      if [ $uid -ne 0 ]; then
+        mkdir $home/.config/terminator
+        wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/useful-programs/terminator.conf > $home/.config/terminator/config
+      fi
+
       # Install SpaceVim
       su -c "curl -sLf https://spacevim.org/install.sh | bash" $name
 
