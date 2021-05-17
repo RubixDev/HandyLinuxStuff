@@ -25,10 +25,21 @@ wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-D
 getent passwd | while IFS=: read -r name password uid gid gecos home shell; do
   if [ -d "$home" ] && [ "$(stat -c %u "$home")" = "$uid" ]; then
     if [ ! -z "$shell" ] && [ "$shell" != "/bin/false" ] && [ "$shell" != "/usr/sbin/nologin" ]; then
-      # Configure terminator
+      # If not root
       if [ $uid -ne 0 ]; then
+        # Configure terminator
         mkdir $home/.config/terminator
         wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/useful-programs/terminator.conf > $home/.config/terminator/config
+
+        # Install forceblur KWin script
+        wget -O- "https://github.com/esjeon/kwin-forceblur/releases/download/v0.4.1/forceblur-0.4.1.kwinscript" > $home/forceblur.kwinscript
+        plasmapkg2 -i $home/forceblur.kwinscript || plasmapkg2 -u $home/forceblur.kwinscript
+        mkdir -p $home/.local/share/kservices5/
+        cp $home/.local/share/kwin/scripts/forceblur/metadata.desktop $home/.local/share/kservices5/forceblur.desktop
+        echo '\n[Script-forceblur]\npatterns=yakuake\\nurxvt\\nkeepassxc\\nterminator' >> $home/.config/kwinrc
+        perl -i -p -e 's/forceblurEnabled=true/forceblurEnabled=false/' $home/.config/kwinrc
+        qdbus org.kde.KWin /KWin reconfigure
+        perl -i -p -e 's/forceblurEnabled=false/forceblurEnabled=true/' $home/.config/kwinrc
       fi
 
       # Install SpaceVim
