@@ -9,7 +9,7 @@ sudo apt install terminator -y || sudo pacman -S terminator || exit 1
 echo '..done'
 
 echo 'Installing terminator config file'
-mkdir ~/.config/terminator || exit 3
+mkdir -p ~/.config/terminator || exit 3
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/terminator-plasma-install/terminator.conf > ~/.config/terminator/config || exit 3
 echo '..done'
 
