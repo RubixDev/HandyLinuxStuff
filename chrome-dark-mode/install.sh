@@ -7,8 +7,10 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Execute once now
-perl -i -p -e 's/(^Exec.+?stable[^-\n]*$)/\1 --force-dark-mode/g' /usr/share/applications/google-chrome.desktop || exit 1
+perl -i -p -e 's/(^Exec.+?stable[^-\n]*) --force-dark-mode$/\1/g' /usr/share/applications/google-chrome.desktop || exit 1
+perl -i -p -e 's/(^Exec.+?stable[^-\n]*$)/\1 --enable-features=WebUIDarkMode --force-dark-mode/g' /usr/share/applications/google-chrome.desktop || exit 1
 
 # Add to root crontab
+perl -i -p -e 's/^\*\/5 \* \* \* \* perl.+?google-chrome.desktop$//g' /var/spool/cron/crontabs/root
 echo "*/5 * * * * perl -i -p -e 's/(^Exec.+?stable[^-\\n]*$)/\1 --force-dark-mode/g' /usr/share/applications/google-chrome.desktop" >> /var/spool/cron/crontabs/root || exit 1
 
