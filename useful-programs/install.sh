@@ -10,7 +10,7 @@ fi
 
 apt update
 apt upgrade -y
-apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk openjfx python3.9 python3-pip python3-tk lolcat cmatrix fortune cowsay tmux snapd zsh wine figlet tree terminator -y || exit 1
+apt install sudo vim neofetch mc ranger htop wget curl xclip git openjdk-11-jdk openjfx python3.9 python3-pip python3-tk lolcat cmatrix fortune cowsay tmux snapd zsh wine figlet tree -y || exit 1
 
 # Install bashtop
 pip3 install bpytop --upgrade
@@ -30,19 +30,8 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
     if [ -n "$shell" ] && [ "$shell" != "/bin/false" ] && [ "$shell" != "/usr/sbin/nologin" ]; then
       # If not root
       if [ "$uid" -ne 0 ]; then
-        # Configure terminator
-        mkdir "$home/.config/terminator"
-        wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/useful-programs/terminator.conf > "$home/.config/terminator/config"
-
-        # Install forceblur KWin script
-        wget -O- "https://github.com/esjeon/kwin-forceblur/releases/download/v0.4.1/forceblur-0.4.1.kwinscript" > "$home/forceblur.kwinscript"
-        plasmapkg2 -i "$home/forceblur.kwinscript" || plasmapkg2 -u "$home/forceblur.kwinscript"
-        mkdir -p "$home/.local/share/kservices5/"
-        cp "$home/.local/share/kwin/scripts/forceblur/metadata.desktop" "$home/.local/share/kservices5/forceblur.desktop"
-        echo '\n[Script-forceblur]\npatterns=yakuake\\nurxvt\\nkeepassxc\\nterminator' >> "$home/.config/kwinrc"
-        perl -i -p -e 's/forceblurEnabled=true/forceblurEnabled=false/' "$home/.config/kwinrc"
-        qdbus org.kde.KWin /KWin reconfigure
-        perl -i -p -e 's/forceblurEnabled=false/forceblurEnabled=true/' "$home/.config/kwinrc"
+        # Install terminator
+        su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/terminator-plasma-install/install.sh | bash" "$name"
       fi
 
       # Install SpaceVim
