@@ -1,7 +1,10 @@
 #!/bin/bash
 
+NOCOLOR='\033[0m'
+RED='\033[0;31m'
+
 if [ "$EUID" -ne 0 ]; then
-  echo "Please run this script as root"
+  echo -e "${RED}Please run this script as root${NOCOLOR}"
   exit 2
 fi
 
@@ -22,50 +25,49 @@ wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-D
 
 
 # Execute per user
-getent passwd | while IFS=: read -r name password uid gid gecos home shell; do
+getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name password uid gid gecos home shell
   if [ -d "$home" ] && [ "$(stat -c %u "$home")" = "$uid" ]; then
-    if [ ! -z "$shell" ] && [ "$shell" != "/bin/false" ] && [ "$shell" != "/usr/sbin/nologin" ]; then
+    if [ -n "$shell" ] && [ "$shell" != "/bin/false" ] && [ "$shell" != "/usr/sbin/nologin" ]; then
       # If not root
-      if [ $uid -ne 0 ]; then
+      if [ "$uid" -ne 0 ]; then
         # Configure terminator
-        mkdir $home/.config/terminator
-        wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/useful-programs/terminator.conf > $home/.config/terminator/config
+        mkdir "$home/.config/terminator"
+        wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/useful-programs/terminator.conf > "$home/.config/terminator/config"
 
         # Install forceblur KWin script
-        wget -O- "https://github.com/esjeon/kwin-forceblur/releases/download/v0.4.1/forceblur-0.4.1.kwinscript" > $home/forceblur.kwinscript
-        plasmapkg2 -i $home/forceblur.kwinscript || plasmapkg2 -u $home/forceblur.kwinscript
-        mkdir -p $home/.local/share/kservices5/
-        cp $home/.local/share/kwin/scripts/forceblur/metadata.desktop $home/.local/share/kservices5/forceblur.desktop
-        echo '\n[Script-forceblur]\npatterns=yakuake\\nurxvt\\nkeepassxc\\nterminator' >> $home/.config/kwinrc
-        perl -i -p -e 's/forceblurEnabled=true/forceblurEnabled=false/' $home/.config/kwinrc
+        wget -O- "https://github.com/esjeon/kwin-forceblur/releases/download/v0.4.1/forceblur-0.4.1.kwinscript" > "$home/forceblur.kwinscript"
+        plasmapkg2 -i "$home/forceblur.kwinscript" || plasmapkg2 -u "$home/forceblur.kwinscript"
+        mkdir -p "$home/.local/share/kservices5/"
+        cp "$home/.local/share/kwin/scripts/forceblur/metadata.desktop" "$home/.local/share/kservices5/forceblur.desktop"
+        echo '\n[Script-forceblur]\npatterns=yakuake\\nurxvt\\nkeepassxc\\nterminator' >> "$home/.config/kwinrc"
+        perl -i -p -e 's/forceblurEnabled=true/forceblurEnabled=false/' "$home/.config/kwinrc"
         qdbus org.kde.KWin /KWin reconfigure
-        perl -i -p -e 's/forceblurEnabled=false/forceblurEnabled=true/' $home/.config/kwinrc
+        perl -i -p -e 's/forceblurEnabled=false/forceblurEnabled=true/' "$home/.config/kwinrc"
       fi
 
       # Install SpaceVim
-      su -c "curl -sLf https://spacevim.org/install.sh | bash" $name
+      su -c "curl -sLf https://spacevim.org/install.sh | bash" "$name"
 
       # Install zsh zish theme
-      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/install.sh | bash" $name
-      chsh -s /usr/bin/zsh $name
+      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/install.sh | bash" "$name"
+      chsh -s /usr/bin/zsh "$name"
 
       # Set tmux to use 256 colors
-      su -c "echo 'set -g default-terminal \"screen-256color\"' > ~/.tmux.conf" $name
+      su -c "echo 'set -g default-terminal \"screen-256color\"' > ~/.tmux.conf" "$name"
 
       # Setup aliases
-      su -c "echo \"alias tmux='tmux -2'\" >> ~/.zshrc" $name
-      su -c "echo \"alias zalias='vim ~/.zshrc'\" >> ~/.zshrc" $name
-      su -c "echo \"alias setclip='xclip -selection c'\" >> ~/.zshrc" $name
-      su -c "echo \"alias getclip='xclip -selection c -o'\" >> ~/.zshrc" $name
-      su -c "echo \"alias con='ssh contabo'\" >> ~/.zshrc" $name
-      su -c "echo \"alias poof='poweroff'\" >> ~/.zshrc" $name
-      su -c "echo \"alias 'cd..'='cd ..'\" >> ~/.zshrc" $name
-      su -c "echo \"alias bashtop='bpytop'\" >> ~/.zshrc" $name
-      su -c "echo \"alias cp='cp -iv'\" >> ~/.zshrc" $name
-      su -c "echo \"alias myip='curl ipinfo.io/ip'\" >> ~/.zshrc" $name
-      su -c "echo \"alias lelcat='wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/useful-programs-installer/meow.sh | bash'\" >> ~/.zshrc" $name
-      su -c "echo \"alias sshconf='sudo vim /etc/ssh/sshd_config'\" >> ~/.zshrc" $name
+      su -c "echo \"alias tmux='tmux -2'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias zalias='vim ~/.zshrc'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias setclip='xclip -selection c'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias getclip='xclip -selection c -o'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias con='ssh contabo'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias poof='poweroff'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias btop='bpytop'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias cp='cp -iv'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias myip='curl ipinfo.io/ip'\" >> ~/.zshrc" "$name"
+      su -c "echo -e \"alias lelcat='bash -c \\\"\\\$(wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/meow.sh)\\\"'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias sshconf='sudo vim /etc/ssh/sshd_config'\" >> ~/.zshrc" "$name"
+      su -c "echo \"alias rr='rm -r'\" >> ~/.zshrc" "$name"
     fi
   fi
 done
-

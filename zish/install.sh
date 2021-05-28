@@ -1,20 +1,24 @@
-#!/bin/sh
+#!/bin/bash
+
+NOCOLOR='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
 
 # Check dependencies
 zsh --version > /dev/null || {
-  echo 'zsh is not installed. Please make sure it is correctly installed on your system. A list on how to install it on many distributions can be found here: https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#how-to-install-zsh-on-many-platforms'
+  echo -e "${RED}zsh is not installed. Please make sure it is correctly installed on your system. A list on how to install it on many distributions can be found here: https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#how-to-install-zsh-on-many-platforms${NOCOLOR}"
   exit 127
 }
 
 wget --version > /dev/null || {
   curl --version > /dev/null || {
-    echo 'You have neither wget nor curl installed. Please install at least one of them.'
+    echo -e "${RED}You have neither wget nor curl installed. Please install at least one of them.${NOCOLOR}"
     exit 127
   }
 }
 
 git --version > /dev/null || {
-  echo 'git is not installed. Please make sure it is correctly installed on your system.'
+  echo -e "${RED}git is not installed. Please make sure it is correctly installed on your system.${NOCOLOR}"
   exit 127
 }
 
@@ -53,5 +57,4 @@ echo "ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold" >> ~/.zshrc || exi
 echo "ZSH_HIGHLIGHT_STYLES[assign]=fg=14" >> ~/.zshrc || exit 1
 
 
-echo "Installation finished. You can set zsh as your default shell using 'chsh -s $(which zsh)'"
-
+echo -e "${GREEN}Installation finished.${NOCOLOR} You can set zsh as your default shell using 'chsh -s $(which zsh)'"

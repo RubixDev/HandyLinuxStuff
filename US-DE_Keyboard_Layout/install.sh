@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Remove layout from US file if present
 perl -0777 -i -p -e 's/xkb_symbols "us_de"[\s\S]*?\n};\n?//g' /usr/share/X11/xkb/symbols/us || exit 1
@@ -16,4 +16,3 @@ perl -0777 -i -p -e 's/(<layout>[\s\S]*?<description>English \(US\)<\/descriptio
 # Reload all Layouts
 systemctl restart keyboard-setup
 udevadm trigger --subsystem-match=input --action=change
-
