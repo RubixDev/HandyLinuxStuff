@@ -9,7 +9,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 pacman -S --needed base-devel
-pacman -Syu vim cronie neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm-kcm --noconfirm || exit 1
+pacman -Syu vim cronie neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm-kcm kvantum-qt5 --noconfirm || exit 1
 
 # Install yay
 git clone https://aur.archlinux.org/yay.git ~/HopefullyNotBeforeUsedDirectoryName
@@ -42,7 +42,21 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do  # name passwo
         su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/terminator-plasma-install/install.sh | bash" "$name"
 
         # Install Orchis theme
-        su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/OrchisPlasmaTheme/install.sh | bash" "$name"
+        mkdir -p "$home/TemporaryOrchisPlasmaThemeInstallDirectory"
+        cd "$home/TemporaryOrchisPlasmaThemeInstallDirectory" || exit 4
+
+        git clone https://github.com/vinceliuice/Orchis-theme.git
+        su -c "Orchis-theme/install.sh -t purple" "$name"
+
+        git clone https://github.com/vinceliuice/Orchis-kde.git
+        su -c "Orchis-kde/install.sh" "$name"
+        Orchis-kde/sddm/install.sh
+
+        git clone https://github.com/vinceliuice/Tela-circle-icon-theme.git
+        su -c "Tela-circle-icon-theme/install.sh -a" "$name"
+
+        cd || exit 3
+        rm -rf "$home/TemporaryOrchisPlasmaThemeInstallDirectory"
       fi
 
       # Install SpaceVim
