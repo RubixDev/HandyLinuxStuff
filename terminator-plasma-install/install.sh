@@ -11,7 +11,7 @@ if [ "$EUID" -eq 0 ]; then
 fi
 
 echo -e "${CYAN}Installing terminator${NOCOLOR}"
-sudo apt install terminator -y || sudo pacman -Syu terminator --noconfirm || exit 1
+terminator --version || sudo apt install terminator -y || sudo pacman -Syu terminator --noconfirm || exit 1
 echo -e "${GREEN}..done${NOCOLOR}"
 
 
