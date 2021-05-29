@@ -9,7 +9,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 pacman -S --needed base-devel
-pacman -Syu vim cronie neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm-kcm kvantum-qt5 --noconfirm || exit 1
+pacman -Syu terminator vim cronie neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm-kcm kvantum-qt5 --noconfirm || exit 1
 
 # Install yay
 git clone https://aur.archlinux.org/yay.git ~/HopefullyNotBeforeUsedDirectoryName
