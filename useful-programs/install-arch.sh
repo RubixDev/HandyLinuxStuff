@@ -24,6 +24,15 @@ wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-D
 # Install FIGlet fonts
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/figlet-font-installer/install.sh | bash
 
+# AUR packages
+useradd aurinstallfromroothelper -m
+passwd -d aurinstallfromroothelper
+printf 'aurinstallfromroothelper ALL=(ALL) ALL\n' | tee -a /etc/sudoers # Allow aurinstallfromroothelper passwordless sudo
+install_aur_package () { sudo -u aurinstallfromroothelper bash -c "cd ~ && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -si --noconfirm"; }
+install_aur_package discord
+install_aur_package google-chrome
+userdel -r aurinstallfromroothelper
+
 # Apply Chrome dark theme
 perl -i -pe 's/(^Exec.+?stable[^-\n]*) --force-dark-mode$/\1/g' /usr/share/applications/google-chrome.desktop
 perl -i -pe 's/(^Exec.+?stable[^-\n]*$)/\1 --enable-features=WebUIDarkMode --force-dark-mode/g' /usr/share/applications/google-chrome.desktop
@@ -53,9 +62,6 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
 
         cd || exit 3
         rm -rf "$home/TemporaryOrchisPlasmaThemeInstallDirectory"
-
-        # AUR packages
-        su -c "yay -S discord google-chrome --noconfirm" "$name"
       fi
 
       # Install SpaceVim
