@@ -32,7 +32,7 @@ echo -e "\n[Script-forceblur]\npatterns=yakuake\\nurxvt\\nkeepassxc\\nterminator
 echo -e "${CYAN}Disabling script${NOCOLOR}"
 perl -i -p -e 's/forceblurEnabled=true/forceblurEnabled=false/' ~/.config/kwinrc || exit 4
 echo -e "${CYAN}Reloading KWin${NOCOLOR}"
-qdbus org.kde.KWin /KWin reconfigure || exit 4
+qdbus org.kde.KWin /KWin reconfigure
 echo -e "${CYAN}Enabling script${NOCOLOR}"
 perl -i -p -e 's/forceblurEnabled=false/forceblurEnabled=true/' ~/.config/kwinrc || exit 4
 echo -e "${GREEN}..done${NOCOLOR}"
