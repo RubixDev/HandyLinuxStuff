@@ -70,6 +70,7 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do  # name passwo
       su -c "echo 'set -g default-terminal \"screen-256color\"' > ~/.tmux.conf" "$name"
 
       # Setup aliases
+      perl -i -pe 's/^alias.*//g' "$home/.zshrc"
       su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/AliasSetup/install.sh | bash" "$name"
     fi
   fi
