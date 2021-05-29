@@ -35,7 +35,7 @@ perl -i -pe 's/(^Exec.+?stable[^-\n]*$)/\1 --enable-features=WebUIDarkMode --for
 # Execute per user
 getent passwd | while IFS=: read -r name _ uid _ _ home shell; do  # name password uid gid gecos home shell
   if [ -d "$home" ] && [ "$(stat -c %u "$home")" = "$uid" ]; then
-    if [ -n "$shell" ] && [ "$shell" != "/bin/false" ] && [ "$shell" != "/usr/sbin/nologin" ]; then
+    if [ -n "$shell" ] && [ "$shell" != "/bin/false" ] && [ "$shell" != "/usr/sbin/nologin" ] && [ "$shell" != "/usr/bin/nologin" ] && { [ "$uid" -eq 0 ] || [ "$uid" -ge 1000 ]; }; then
       # If not root
       if [ "$uid" -ne 0 ]; then
         # Install terminator
