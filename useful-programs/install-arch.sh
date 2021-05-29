@@ -70,17 +70,7 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do  # name passwo
       su -c "echo 'set -g default-terminal \"screen-256color\"' > ~/.tmux.conf" "$name"
 
       # Setup aliases
-      su -c "echo \"alias tmux='tmux -2'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias zalias='vim ~/.zshrc'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias setclip='xclip -selection c'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias getclip='xclip -selection c -o'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias con='ssh contabo'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias poof='poweroff'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias btop='bpytop'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias cp='cp -iv'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias myip='curl ipinfo.io/ip'\" >> ~/.zshrc" "$name"
-      su -c "echo -e \"alias lelcat='bash -c \\\"\\\$(wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/meow.sh)\\\"'\" >> ~/.zshrc" "$name"
-      su -c "echo \"alias rr='rm -r'\" >> ~/.zshrc" "$name"
+      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/AliasSetup/install.sh | bash" "$name"
     fi
   fi
 done
