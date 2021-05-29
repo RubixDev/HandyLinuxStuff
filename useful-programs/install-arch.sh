@@ -24,16 +24,12 @@ wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-D
 # Install FIGlet fonts
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/figlet-font-installer/install.sh | bash
 
-# AUR packages
-yay -S discord google-chrome --noconfirm
-
 # Apply Chrome dark theme
 perl -i -pe 's/(^Exec.+?stable[^-\n]*) --force-dark-mode$/\1/g' /usr/share/applications/google-chrome.desktop
 perl -i -pe 's/(^Exec.+?stable[^-\n]*$)/\1 --enable-features=WebUIDarkMode --force-dark-mode/g' /usr/share/applications/google-chrome.desktop
 
-
 # Execute per user
-getent passwd | while IFS=: read -r name _ uid _ _ home shell; do  # name password uid gid gecos home shell
+getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name password uid gid gecos home shell
   if [ -d "$home" ] && [ "$(stat -c %u "$home")" = "$uid" ]; then
     if [ -n "$shell" ] && [ "$shell" != "/bin/false" ] && [ "$shell" != "/usr/sbin/nologin" ] && [ "$shell" != "/usr/bin/nologin" ] && { [ "$uid" -eq 0 ] || [ "$uid" -ge 1000 ]; }; then
       # If not root
@@ -57,6 +53,9 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do  # name passwo
 
         cd || exit 3
         rm -rf "$home/TemporaryOrchisPlasmaThemeInstallDirectory"
+
+        # AUR packages
+        su -c "yay -S discord google-chrome --noconfirm" "$name"
       fi
 
       # Install SpaceVim
