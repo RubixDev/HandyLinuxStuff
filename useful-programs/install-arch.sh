@@ -14,7 +14,7 @@ install () {
     pacman -Qi "$package" > /dev/null || pacman -S "$package" --noconfirm || exit 1
   done
 }
-install terminator vim cronie neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm sddm-kcm kvantum-qt5 || exit 1
+install terminator vim cronie neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm sddm-kcm kvantum-qt5 ttf-liberation ttf-jetbrains-mono || exit 1
 
 # Install yay
 pacman -Qi yay || {

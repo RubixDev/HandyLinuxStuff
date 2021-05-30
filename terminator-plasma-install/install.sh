@@ -7,11 +7,25 @@ GREEN='\033[0;32m'
 
 if [ "$EUID" -eq 0 ]; then
   echo -e "${RED}Please do not run this script as root${NOCOLOR}"
-  exit 2
+  exit 1
+fi
+
+install () {
+  for package in "$@"; do
+    pacman -Qi "$package" > /dev/null || sudo pacman -S "$package" --noconfirm || exit 1
+  done
+}
+
+echo -e "${CYAN}Installing JetBrains Mono font${NOCOLOR}"
+if ( pacman --version > /dev/null ); then
+  install ttf-jetbrains-mono
+  echo -e "${GREEN}..done${NOCOLOR}"
+else
+  echo -e "${RED}pacman not found! apt is not yet supported. Continuing without font installation${NOCOLOR}"
 fi
 
 echo -e "${CYAN}Installing terminator${NOCOLOR}"
-terminator --version || sudo apt install terminator -y || sudo pacman -Syu terminator --noconfirm || exit 1
+terminator --version || sudo apt install terminator -y || install terminator || exit 2
 echo -e "${GREEN}..done${NOCOLOR}"
 
 
