@@ -8,15 +8,22 @@ if [ "$EUID" -ne 0 ]; then
   exit 2
 fi
 
-pacman -S --needed base-devel
-pacman -Syu terminator vim cronie neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm-kcm kvantum-qt5 --noconfirm || exit 1
+pacman -Syu --needed base-devel
+install () {
+  for package in "$@"; do
+    pacman -Qi "$package" > /dev/null || pacman -S "$package" --noconfirm || exit 1
+  done
+}
+install terminator vim cronie neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm sddm-kcm kvantum-qt5 || exit 1
 
 # Install yay
-git clone https://aur.archlinux.org/yay.git ~/HopefullyNotBeforeUsedDirectoryName
-cd ~/HopefullyNotBeforeUsedDirectoryName || exit 3
-makepkg -si
-cd || exit 3
-rm -r ~/HopefullyNotBeforeUsedDirectoryName
+pacman -Qi yay || {
+  git clone https://aur.archlinux.org/yay.git ~/HopefullyNotBeforeUsedDirectoryName
+  cd ~/HopefullyNotBeforeUsedDirectoryName || exit 3
+  makepkg -si
+  cd || exit 3
+  rm -r ~/HopefullyNotBeforeUsedDirectoryName
+}
 
 # Install keyboard layout
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | bash
@@ -25,13 +32,20 @@ wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-D
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/figlet-font-installer/install.sh | bash
 
 # AUR packages
-useradd aurinstallfromroothelper -m
-passwd -d aurinstallfromroothelper
-printf 'aurinstallfromroothelper ALL=(ALL) ALL\n' | tee -a /etc/sudoers # Allow aurinstallfromroothelper passwordless sudo
-install_aur_package () { sudo -u aurinstallfromroothelper bash -c "cd ~ && git clone https://aur.archlinux.org/$1.git && cd $1 && makepkg -si --noconfirm"; }
-install_aur_package discord
-install_aur_package google-chrome
-userdel -r aurinstallfromroothelper
+aur_install () {
+  useradd aurinstallfromroothelper -m
+  passwd -d aurinstallfromroothelper
+  printf 'aurinstallfromroothelper ALL=(ALL) ALL\n' | tee -a /etc/sudoers # Allow aurinstallfromroothelper passwordless sudo
+
+  for package in "$@"; do
+    pacman -Qi "$package" > /dev/null || {
+      sudo -u aurinstallfromroothelper bash -c "cd ~ && git clone https://aur.archlinux.org/$package.git && cd $package && makepkg -si --noconfirm"
+    }
+  done
+
+  userdel -r aurinstallfromroothelper
+}
+aur_install discord google-chrome
 
 # Apply Chrome dark theme
 perl -i -pe 's/(^Exec.+?stable[^-\n]*) --force-dark-mode$/\1/g' /usr/share/applications/google-chrome.desktop
