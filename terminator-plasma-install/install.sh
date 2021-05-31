@@ -39,6 +39,7 @@ echo -e "${CYAN}Downloading forceblur KWin script${NOCOLOR}"
 wget -O- "https://github.com/esjeon/kwin-forceblur/releases/download/v0.4.1/forceblur-0.4.1.kwinscript" > ~/forceblur.kwinscript || exit 4
 echo -e "${CYAN}Installing script${NOCOLOR}"
 plasmapkg2 -i ~/forceblur.kwinscript || plasmapkg2 -u ~/forceblur.kwinscript || exit 4
+rm ~/forceblur.kwinscript
 mkdir -p ~/.local/share/kservices5/
 cp ~/.local/share/kwin/scripts/forceblur/metadata.desktop ~/.local/share/kservices5/forceblur.desktop || exit 4
 echo -e "${CYAN}Configuring script${NOCOLOR}"
