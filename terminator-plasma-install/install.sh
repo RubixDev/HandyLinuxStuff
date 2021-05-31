@@ -42,13 +42,15 @@ plasmapkg2 -i ~/forceblur.kwinscript || plasmapkg2 -u ~/forceblur.kwinscript || 
 mkdir -p ~/.local/share/kservices5/
 cp ~/.local/share/kwin/scripts/forceblur/metadata.desktop ~/.local/share/kservices5/forceblur.desktop || exit 4
 echo -e "${CYAN}Configuring script${NOCOLOR}"
-echo -e "\n[Script-forceblur]\npatterns=yakuake\\nurxvt\\nkeepassxc\\nterminator" >> ~/.config/kwinrc || exit 4
+echo -e "\n[Script-forceblur]\npatterns=yakuake\\\nurxvt\\\nkeepassxc\\\nterminator" >> ~/.config/kwinrc || exit 4
 echo -e "${CYAN}Disabling script${NOCOLOR}"
-perl -i -p -e 's/forceblurEnabled=true/forceblurEnabled=false/' ~/.config/kwinrc || exit 4
+echo -e "\n[Plugins]\nforceblurEnabled=true" >> ~/.config/kwinrc || exit 4
 echo -e "${CYAN}Reloading KWin${NOCOLOR}"
 qdbus org.kde.KWin /KWin reconfigure
 echo -e "${CYAN}Enabling script${NOCOLOR}"
 perl -i -p -e 's/forceblurEnabled=false/forceblurEnabled=true/' ~/.config/kwinrc || exit 4
+echo -e "${CYAN}Reloading KWin${NOCOLOR}"
+qdbus org.kde.KWin /KWin reconfigure
 echo -e "${GREEN}..done${NOCOLOR}"
 
 echo -e "\n${GREEN}Installation of terminator with blur finished!${NOCOLOR}"
