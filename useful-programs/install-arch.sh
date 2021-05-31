@@ -45,7 +45,7 @@ aur_install () {
 
   userdel -r aurinstallfromroothelper
 }
-aur_install google-chrome
+aur_install google-chrome github-desktop jetbrains-toolbox
 
 # Apply Chrome dark theme
 perl -i -pe 's/(^Exec.+?stable[^-\n]*) --force-dark-mode$/\1/g' /usr/share/applications/google-chrome.desktop
