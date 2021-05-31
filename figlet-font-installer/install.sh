@@ -10,11 +10,17 @@ if [ "$EUID" -ne 0 ]; then
   exit 2
 fi
 
+if [ -d /usr/share/figlet/fonts ]; then
+  fontfolder="/usr/share/figlet/fonts/"
+else
+  fontfolder="/usr/share/figlet/"
+fi
+
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/figlet-font-installer/fontnames.txt | while read -r fontname; do
-  if [ -f "/usr/share/figlet/$fontname.flf" ]; then
+  if [ -f "$fontfolder$fontname.flf" ]; then
     echo -e "${YELLOW}Font $fontname is already installed, skipping.${NOCOLOR}"
   else
     echo -e "${CYAN}Installing $fontname font${NOCOLOR}"
-    wget -O- "http://www.figlet.org/fonts/$fontname.flf" > "/usr/share/figlet/$fontname.flf"
+    wget -O- "http://www.figlet.org/fonts/$fontname.flf" > "$fontfolder$fontname.flf"
   fi
 done
