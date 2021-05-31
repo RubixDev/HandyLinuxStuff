@@ -1,12 +1,12 @@
 #!/bin/bash
 
-NOCOLOR='\033[0m'
-RED='\033[0;31m'
-YELLOW='\033[1;33m'
-CYAN='\033[0;36m'
+COLOR () { echo "\\033[38;5;$1m"; }
+BOLD () { if [ "$1" != "" ]; then echo "$(BOLD)$(COLOR "$1")"; else echo "\\033[1m"; fi; }
+NORMAL () { if [ "$1" != "" ]; then echo "$(NORMAL)$(COLOR "$1")"; else echo "\\033[22m"; fi; }
+RESET () { echo "\\033[0m"; }
 
 if [ "$EUID" -ne 0 ]; then
-  echo -e "${RED}Please run this script as root${NOCOLOR}"
+  echo -e "$(BOLD 1)Please run this script as root$(RESET)"
   exit 2
 fi
 
@@ -18,9 +18,9 @@ fi
 
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/figlet-font-installer/fontnames.txt | while read -r fontname; do
   if [ -f "$fontfolder$fontname.flf" ]; then
-    echo -e "${YELLOW}Font $fontname is already installed, skipping.${NOCOLOR}"
+    echo -e "$(NORMAL 3)Font $(BOLD)$fontname$(NORMAL) is already installed, skipping.$(RESET)"
   else
-    echo -e "${CYAN}Installing $fontname font${NOCOLOR}"
+    echo -e "$(NORMAL 6)Installing $(BOLD)$fontname$(NORMAL) font$(RESET)"
     wget -O- "http://www.figlet.org/fonts/$fontname.flf" > "$fontfolder$fontname.flf"
   fi
 done

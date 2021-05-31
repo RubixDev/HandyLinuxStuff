@@ -1,24 +1,25 @@
 #!/bin/bash
 
-NOCOLOR='\033[0m'
-RED='\033[0;31m'
-GREEN='\033[0;32m'
+COLOR () { echo "\\033[38;5;$1m"; }
+BOLD () { if [ "$1" != "" ]; then echo "$(BOLD)$(COLOR "$1")"; else echo "\\033[1m"; fi; }
+NORMAL () { if [ "$1" != "" ]; then echo "$(NORMAL)$(COLOR "$1")"; else echo "\\033[22m"; fi; }
+RESET () { echo "\\033[0m"; }
 
 # Check dependencies
 zsh --version > /dev/null || {
-  echo -e "${RED}zsh is not installed. Please make sure it is correctly installed on your system. A list on how to install it on many distributions can be found here: https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#how-to-install-zsh-on-many-platforms${NOCOLOR}"
+  echo -e "$(BOLD 1)zsh is not installed.$(NORMAL) Please make sure it is correctly installed on your system. A list on how to install it on many distributions can be found here: https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH#how-to-install-zsh-on-many-platforms$(RESET)"
   exit 127
 }
 
 wget --version > /dev/null || {
   curl --version > /dev/null || {
-    echo -e "${RED}You have neither wget nor curl installed. Please install at least one of them.${NOCOLOR}"
+    echo -e "$(BOLD 1)You have neither wget nor curl installed.$(NORMAL) Please install at least one of them.$(RESET)"
     exit 127
   }
 }
 
 git --version > /dev/null || {
-  echo -e "${RED}git is not installed. Please make sure it is correctly installed on your system.${NOCOLOR}"
+  echo -e "$(BOLD 1)git is not installed.$(NORMAL) Please make sure it is correctly installed on your system.$(RESET)"
   exit 127
 }
 
@@ -57,4 +58,4 @@ echo "ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold" >> ~/.zshrc || exi
 echo "ZSH_HIGHLIGHT_STYLES[assign]=fg=14" >> ~/.zshrc || exit 1
 
 
-echo -e "${GREEN}Installation finished.${NOCOLOR} You can set zsh as your default shell using 'chsh -s $(which zsh)'"
+echo -e "$(NORMAL 2)Installation finished.$(NORMAL) You can set zsh as your default shell using 'chsh -s $(which zsh)'$(RESET)"

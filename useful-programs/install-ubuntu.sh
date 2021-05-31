@@ -1,10 +1,12 @@
 #!/bin/bash
 
-NOCOLOR='\033[0m'
-RED='\033[0;31m'
+COLOR () { echo "\\033[38;5;$1m"; }
+BOLD () { if [ "$1" != "" ]; then echo "$(BOLD)$(COLOR "$1")"; else echo "\\033[1m"; fi; }
+#NORMAL () { if [ "$1" != "" ]; then echo "$(NORMAL)$(COLOR "$1")"; else echo "\\033[22m"; fi; }
+RESET () { echo "\\033[0m"; }
 
 if [ "$EUID" -ne 0 ]; then
-  echo -e "${RED}Please run this script as root${NOCOLOR}"
+  echo -e "$(BOLD 1)Please run this script as root$(RESET)"
   exit 2
 fi
 
