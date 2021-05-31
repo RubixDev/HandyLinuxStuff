@@ -1,8 +1,8 @@
 #!/bin/bash
 
-COLOR () { echo "\\033[38;5;$1m"; }
-BOLD () { if [ "$1" != "" ]; then echo "$(BOLD)$(COLOR "$1")"; else echo "\\033[1m"; fi; }
-NORMAL () { if [ "$1" != "" ]; then echo "$(NORMAL)$(COLOR "$1")"; else echo "\\033[22m"; fi; }
+_COLOR () { echo "\\033[38;5;$1m"; }
+BOLD () { if [ "$1" != "" ]; then echo "$(BOLD)$(_COLOR "$1")"; else echo "\\033[1m"; fi; }
+NORMAL () { if [ "$1" != "" ]; then echo "$(NORMAL)$(_COLOR "$1")"; else echo "\\033[22m"; fi; }
 RESET () { echo "\\033[0m"; }
 
 # Test if run as root
