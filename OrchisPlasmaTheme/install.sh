@@ -3,17 +3,30 @@
 sudo apt install kvantum-qt5 -y || sudo pacman -Syu kvantum-qt5 --noconfirm
 
 mkdir -p ~/TemporaryOrchisPlasmaThemeInstallDirectory
-cd ~/TemporaryOrchisPlasmaThemeInstallDirectory || exit 2
+cd ~/TemporaryOrchisPlasmaThemeInstallDirectory || exit 1
 
-git clone https://github.com/vinceliuice/Orchis-theme.git || exit 3
-Orchis-theme/install.sh -t purple || exit 3
+git clone https://github.com/vinceliuice/Orchis-theme.git && {
+  Orchis-theme/install.sh -t purple
+}
 
-git clone https://github.com/vinceliuice/Orchis-kde.git || exit 4
-Orchis-kde/install.sh || exit 4
-sudo Orchis-kde/sddm/install.sh || exit 4
+git clone https://github.com/vinceliuice/Orchis-kde.git && {
+  Orchis-kde/install.sh
+  sudo Orchis-kde/sddm/install.sh
+}
 
-git clone https://github.com/vinceliuice/Tela-circle-icon-theme.git || exit 5
-Tela-circle-icon-theme/install.sh -a || exit 5
+git clone https://github.com/vinceliuice/Tela-circle-icon-theme.git && {
+  Tela-circle-icon-theme/install.sh -a
+}
 
-cd || exit 6
-rm -rf ~/TemporaryOrchisPlasmaThemeInstallDirectory || exit 6
+git clone https://github.com/wsdfhjxc/virtual-desktop-bar.git && {
+  if ( pacman --version > /dev/null ); then
+    virtual-desktop-bar/scripts/install-dependencies-arch.sh
+  elif ( apt --version > /dev/null ); then
+    virtual-desktop-bar/scripts/install-dependencies-ubuntu.sh
+  else
+    echo -e "\033[1;38;5;1mOnly Arch and Ubuntu are supported by this install script\033[0m"
+    return 1
+  fi && virtual-desktop-bar/scripts/install-applet.sh
+}
+
+rm -rf ~/TemporaryOrchisPlasmaThemeInstallDirectory
