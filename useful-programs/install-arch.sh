@@ -18,15 +18,6 @@ install () {
 }
 install terminator vim kcron zsh onefetch discord sl neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm sddm-kcm kvantum-qt5 ttf-liberation ttf-jetbrains-mono || exit 1
 
-# Install yay
-pacman -Qi yay || {
-  git clone https://aur.archlinux.org/yay.git ~/HopefullyNotBeforeUsedDirectoryName
-  cd ~/HopefullyNotBeforeUsedDirectoryName || exit 3
-  makepkg -si
-  cd || exit 3
-  rm -r ~/HopefullyNotBeforeUsedDirectoryName
-}
-
 # Install keyboard layout
 wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | bash
 
@@ -41,13 +32,17 @@ aur_install () {
 
   for package in "$@"; do
     pacman -Qi "$package" > /dev/null || {
-      sudo -u aurinstallfromroothelper bash -c "cd ~ && git clone https://aur.archlinux.org/$package.git && cd $package && makepkg -si --noconfirm"
+      if ( pacman -Qi yay > /dev/null ); then
+        sudo -u aurinstallfromroothelper bash -c "yay -S $package --noconfirm"
+      else
+        sudo -u aurinstallfromroothelper bash -c "cd ~ && git clone https://aur.archlinux.org/$package.git && cd $package && makepkg -si --noconfirm"
+      fi
     }
   done
 
   userdel -r aurinstallfromroothelper
 }
-aur_install google-chrome github-desktop jetbrains-toolbox
+aur_install yay google-chrome github-desktop jetbrains-toolbox
 
 # Apply Chrome dark theme
 perl -i -pe 's/(^Exec.+?stable[^-\n]*) --force-dark-mode$/\1/g' /usr/share/applications/google-chrome.desktop
