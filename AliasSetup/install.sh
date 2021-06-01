@@ -17,4 +17,4 @@ add_alias rr 'rm -r'
 add_alias lelcat 'bash -c "$(wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/meow.sh)"'
 # shellcheck disable=SC2016
 add_alias cheat 'f () { curl -s "cheat.sh/$1" | less; }; f'
-add_alias pac pacman
+add_alias pac 'sudo pacman'
