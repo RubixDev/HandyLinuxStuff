@@ -90,24 +90,6 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
             fi && virtual-desktop-bar/scripts/install-applet.sh
           }
         }
-
-        rm -rf ~/TemporaryOrchisPlasmaThemeInstallDirectory
-        
-        mkdir -p "$home/TemporaryOrchisPlasmaThemeInstallDirectory"
-        cd "$home/TemporaryOrchisPlasmaThemeInstallDirectory" || exit 4
-
-        git clone https://github.com/vinceliuice/Orchis-theme.git
-        su -c "Orchis-theme/install.sh -t purple" "$name"
-
-        git clone https://github.com/vinceliuice/Orchis-kde.git
-        su -c "Orchis-kde/install.sh" "$name"
-        Orchis-kde/sddm/install.sh
-
-        git clone https://github.com/vinceliuice/Tela-circle-icon-theme.git
-        su -c "Tela-circle-icon-theme/install.sh -a" "$name"
-
-        cd || exit 3
-        rm -rf "$home/TemporaryOrchisPlasmaThemeInstallDirectory"
       fi
 
       # Install SpaceVim
