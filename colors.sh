@@ -3,18 +3,14 @@
 with_nums=false
 
 rainbow () {
-  for row in {0..95}; do
-    str=""
-    for gubu in {1..16}; do str+="\033[48;2;255;$(( gubu * 16 - 8 ));0m  \033[0m"; done
-    for rdrd in {16..1}; do str+="\033[48;2;$(( rdrd * 16 - 8 ));255;0m  \033[0m"; done
-    for bugu in {1..16}; do str+="\033[48;2;0;255;$(( bugu * 16 - 8 ))m  \033[0m"; done
-    for gdbd in {16..1}; do str+="\033[48;2;0;$(( gdbd * 16 - 8 ));255m  \033[0m"; done
-    for ruru in {1..16}; do str+="\033[48;2;$(( ruru * 16 - 8 ));0;255m  \033[0m"; done
-    for bdgd in {16..1}; do str+="\033[48;2;255;0;$(( bdgd * 16 - 8 ))m  \033[0m"; done
-    space=""
-    for (( i=0; i<row; i++ )); do space+="  "; done
-    echo -e "$space$str$str"
-  done
+  str=""
+  for gubu in {1..16}; do str+="\033[48;2;255;$(( gubu * 16 - 8 ));0m  \033[0m"; done
+  for rdrd in {16..1}; do str+="\033[48;2;$(( rdrd * 16 - 8 ));255;0m  \033[0m"; done
+  for bugu in {1..16}; do str+="\033[48;2;0;255;$(( bugu * 16 - 8 ))m  \033[0m"; done
+  for gdbd in {16..1}; do str+="\033[48;2;0;$(( gdbd * 16 - 8 ));255m  \033[0m"; done
+  for ruru in {1..16}; do str+="\033[48;2;$(( ruru * 16 - 8 ));0;255m  \033[0m"; done
+  for bdgd in {16..1}; do str+="\033[48;2;255;0;$(( bdgd * 16 - 8 ))m  \033[0m"; done
+  for row in {0..9}; do echo -e "$str"; done
   exit
 }
 
@@ -51,7 +47,7 @@ for row in {0..11}; do
   str=""
   for block in {0..2}; do
     for num in {0..5}; do
-      colnum=$(( row * 6 + num + block * 36 + 16 ))
+      if [ "$row" -ge 6 ]; then colnum=$(( row * 6 + num + block * 36 + 88 )); else colnum=$(( row * 6 + num + block * 36 + 16 )); fi
       if [ $with_nums = true ]; then printf -v colnum_padded "%4d" "$colnum"; else colnum_padded="   "; fi
       str+="\033[48;5;${colnum}m${colnum_padded}\033[0m"
     done
