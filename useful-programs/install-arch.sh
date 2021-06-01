@@ -76,15 +76,16 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
 
           git clone https://github.com/wsdfhjxc/virtual-desktop-bar.git && {
             if ( pacman --version > /dev/null ); then
-              virtual-desktop-bar/scripts/install-dependencies-arch.sh
+              pacman -S cmake extra-cmake-modules gcc make --noconfirm
             elif ( apt --version > /dev/null ); then
-              virtual-desktop-bar/scripts/install-dependencies-ubuntu.sh
+              apt install cmake extra-cmake-modules g++ qtbase5-dev qtdeclarative5-dev libqt5x11extras5-dev libkf5plasma-dev libkf5globalaccel-dev libkf5xmlgui-dev -y
             else
               echo -e "$(BOLD 1)Only Arch and Ubuntu are supported by this install script$(RESET)"
               return 1
             fi && virtual-desktop-bar/scripts/install-applet.sh
           }
         }
+        rm -rf ~/TemporaryOrchisPlasmaThemeInstallDirectory
       fi
 
       # Install SpaceVim
