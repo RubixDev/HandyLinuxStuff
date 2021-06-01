@@ -6,7 +6,7 @@ add_alias tmux 'tmux -2'
 add_alias zalias 'vim ~/.zshrc'
 add_alias setclip 'xclip -selection c'
 add_alias getclip 'xclip -selection c -o'
-add_alias lip 'getclip | zsh'
+add_alias clip 'getclip | zsh'
 add_alias con 'ssh contabo'
 add_alias poof poweroff
 add_alias btop bpytop
