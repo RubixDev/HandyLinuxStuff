@@ -31,6 +31,6 @@ xkb_symbols "us_de" {
     key <BKSL> {[ backslash,  bar,         brokenbar                     ]};
     key <LSGT> {[ backslash,  bar,         brokenbar                     ]};
 
-
+    modifier_map Mod3   { Scroll_Lock };
     include "level3(ralt_switch)"
 };
