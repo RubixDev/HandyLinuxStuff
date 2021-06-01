@@ -63,6 +63,36 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
         su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/terminator-plasma-install/install.sh | bash" "$name"
 
         # Install Orchis theme
+        mkdir -p ~/TemporaryOrchisPlasmaThemeInstallDirectory
+        cd ~/TemporaryOrchisPlasmaThemeInstallDirectory && {
+
+          git clone https://github.com/vinceliuice/Orchis-theme.git && {
+            Orchis-theme/install.sh -t purple
+          }
+
+          git clone https://github.com/vinceliuice/Orchis-kde.git && {
+            Orchis-kde/install.sh
+            sudo Orchis-kde/sddm/install.sh
+          }
+
+          git clone https://github.com/vinceliuice/Tela-circle-icon-theme.git && {
+            Tela-circle-icon-theme/install.sh -a
+          }
+
+          git clone https://github.com/wsdfhjxc/virtual-desktop-bar.git && {
+            if ( pacman --version > /dev/null ); then
+              virtual-desktop-bar/scripts/install-dependencies-arch.sh
+            elif ( apt --version > /dev/null ); then
+              virtual-desktop-bar/scripts/install-dependencies-ubuntu.sh
+            else
+              echo -e "$(BOLD 1)Only Arch and Ubuntu are supported by this install script$(RESET)"
+              return 1
+            fi && virtual-desktop-bar/scripts/install-applet.sh
+          }
+        }
+
+        rm -rf ~/TemporaryOrchisPlasmaThemeInstallDirectory
+        
         mkdir -p "$home/TemporaryOrchisPlasmaThemeInstallDirectory"
         cd "$home/TemporaryOrchisPlasmaThemeInstallDirectory" || exit 4
 
