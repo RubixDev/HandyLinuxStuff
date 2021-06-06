@@ -31,7 +31,7 @@ echo -e "$(NORMAL 2)..done$(RESET)"
 
 echo -e "$(NORMAL 6)Installing terminator config file$(RESET)"
 mkdir -p ~/.config/terminator || exit 3
-wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/terminator-plasma-install/terminator.conf > ~/.config/terminator/config || exit 3
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/TerminatorSetup/terminator.conf > ~/.config/terminator/config || exit 3
 echo -e "$(NORMAL 2)..done$(RESET)"
 
 
