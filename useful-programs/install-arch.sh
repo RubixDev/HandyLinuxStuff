@@ -85,6 +85,7 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
             fi && virtual-desktop-bar/scripts/install-applet.sh
           }
         }
+        cd || exit 42
         rm -rf ~/TemporaryOrchisPlasmaThemeInstallDirectory
       fi
 
