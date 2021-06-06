@@ -19,10 +19,10 @@ install () {
 install terminator vim kcron zsh onefetch discord sl neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm sddm-kcm kvantum-qt5 ttf-liberation ttf-jetbrains-mono || exit 1
 
 # Install keyboard layout
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | bash
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/US-DE_Keyboard_Layout/install.sh | bash
 
 # Install FIGlet fonts
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/figlet-font-installer/install.sh | bash
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/figlet-font-installer/install.sh | bash
 
 # AUR packages
 aur_install () {
@@ -55,7 +55,7 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
       # If not root
       if [ "$uid" -ne 0 ]; then
         # Install terminator
-        su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/terminator-plasma-install/install.sh | bash" "$name"
+        su -c "wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/terminator-plasma-install/install.sh | bash" "$name"
 
         # Install Orchis theme
         mkdir -p ~/TemporaryOrchisPlasmaThemeInstallDirectory
@@ -93,7 +93,7 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
       su -c "curl -sLf https://spacevim.org/install.sh | bash" "$name"
 
       # Install zsh zish theme
-      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/install.sh | bash" "$name"
+      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/zish/install.sh | bash" "$name"
       chsh -s /usr/bin/zsh "$name"
 
       # Set tmux to use 256 colors
@@ -101,7 +101,7 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
 
       # Setup aliases
       perl -i -pe 's/^alias.*//g' "$home/.zshrc"
-      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/AliasSetup/install.sh | bash" "$name"
+      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/AliasSetup/install.sh | bash" "$name"
     fi
   fi
 done

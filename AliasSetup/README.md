@@ -4,18 +4,18 @@ They are installed to the `~/.zshrc` file of the current user.
 
 ## Installation
 ```bash
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/AliasSetup/install.sh | bash
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/AliasSetup/install.sh | bash
 ```
 or
 ```bash
-curl -fsSL https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/AliasSetup/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/AliasSetup/install.sh | bash
 ```
 
 ## Remove all installed aliases
 ```bash
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/AliasSetup/removeAll.sh | bash
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/AliasSetup/removeAll.sh | bash
 ```
 or
 ```bash
-curl -fsSL https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/AliasSetup/removeAll.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/AliasSetup/removeAll.sh | bash
 ```

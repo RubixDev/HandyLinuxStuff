@@ -26,13 +26,13 @@ A QWERTY layout with german Umlaut keys
 #### 1.
 Execute
 ```
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | sh
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/US-DE_Keyboard_Layout/install.sh | sh
 ``` 
 as root, e.g. with `sudo`.
 #### 2.
 Select the layout in your system settings
 
 ### Windows
-1. Download [`WindowsSetup.zip`](https://github.com/RubixDev/random-linux-stuff/raw/main/US-DE_Keyboard_Layout/WindowsSetup.zip)
+1. Download [`WindowsSetup.zip`](https://github.com/RubixDev/HandyLinuxStuff/raw/main/US-DE_Keyboard_Layout/WindowsSetup.zip)
 2. Extract the downloaded file
 3. Run the installer suited for your system

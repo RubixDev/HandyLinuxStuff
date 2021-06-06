@@ -16,7 +16,7 @@ else
   fontfolder="/usr/share/figlet/"
 fi
 
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/figlet-font-installer/fontnames.txt | while read -r fontname; do
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/figlet-font-installer/fontnames.txt | while read -r fontname; do
   if [ -f "$fontfolder$fontname.flf" ]; then
     echo -e "$(NORMAL 3)Font $(BOLD)$fontname$(NORMAL) is already installed, skipping.$(RESET)"
   else

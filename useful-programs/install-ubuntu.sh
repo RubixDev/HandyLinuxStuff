@@ -23,7 +23,7 @@ dpkg -i ~/bat_0.18.0_amd64.deb
 rm ~/bat_0.18.0_amd64.deb
 
 # Install keyboard layout
-wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/US-DE_Keyboard_Layout/install.sh | bash
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/US-DE_Keyboard_Layout/install.sh | bash
 
 
 # Execute per user
@@ -33,14 +33,14 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
       # If not root
       if [ "$uid" -ne 0 ]; then
         # Install terminator
-        su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/terminator-plasma-install/install.sh | bash" "$name"
+        su -c "wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/terminator-plasma-install/install.sh | bash" "$name"
       fi
 
       # Install SpaceVim
       su -c "curl -sLf https://spacevim.org/install.sh | bash" "$name"
 
       # Install zsh zish theme
-      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/zish/install.sh | bash" "$name"
+      su -c "wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/zish/install.sh | bash" "$name"
       chsh -s /usr/bin/zsh "$name"
 
       # Set tmux to use 256 colors
@@ -56,7 +56,7 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
       su -c "echo \"alias btop='bpytop'\" >> ~/.zshrc" "$name"
       su -c "echo \"alias cp='cp -iv'\" >> ~/.zshrc" "$name"
       su -c "echo \"alias myip='curl ipinfo.io/ip'\" >> ~/.zshrc" "$name"
-      su -c "echo -e \"alias lelcat='bash -c \\\"\\\$(wget -O- https://raw.githubusercontent.com/RubixDev/random-linux-stuff/main/meow.sh)\\\"'\" >> ~/.zshrc" "$name"
+      su -c "echo -e \"alias lelcat='bash -c \\\"\\\$(wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/meow.sh)\\\"'\" >> ~/.zshrc" "$name"
       su -c "echo \"alias sshconf='sudo vim /etc/ssh/sshd_config'\" >> ~/.zshrc" "$name"
       su -c "echo \"alias rr='rm -r'\" >> ~/.zshrc" "$name"
     fi
