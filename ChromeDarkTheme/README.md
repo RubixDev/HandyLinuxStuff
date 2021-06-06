@@ -7,9 +7,9 @@ This script just creates that file with the flags inside.
 ## Installation
 To execute the script once and add the cron job run one of the following commands:
 ```bash
-wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/chrome-dark-mode/install.sh | bash
+wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/ChromeDarkTheme/install.sh | bash
 ```
 ```bash
-curl -fsSL https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/chrome-dark-mode/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/ChromeDarkTheme/install.sh | bash
 ```
 
