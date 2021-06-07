@@ -16,7 +16,7 @@ install () {
     pacman -Qi "$package" > /dev/null || pacman -S "$package" --noconfirm || exit 1
   done
 }
-install terminator vim kcron zsh onefetch discord sl neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm sddm-kcm kvantum-qt5 ttf-liberation ttf-jetbrains-mono || exit 1
+install terminator vim kcron zsh onefetch discord sl neofetch mc ranger htop wget curl xclip git jdk8-openjdk jdk11-openjdk java8-openjfx java11-openjfx python-pip lolcat cmatrix fortune-mod cowsay tmux wine figlet tree bpytop bat sddm sddm-kcm kvantum-qt5 ttf-liberation ttf-jetbrains-mono wireguard-tools || exit 1
 
 # Install keyboard layout
 wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/US-DE_Keyboard_Layout/install.sh | bash
@@ -33,7 +33,7 @@ aur_install () {
   for package in "$@"; do
     pacman -Qi "$package" > /dev/null || {
       if ( pacman -Qi yay > /dev/null ); then
-        sudo -u aurinstallfromroothelper bash -c "yay -S $package --noconfirm"
+        sudo -u aurinstallfromroothelper bash -c "yay -Syu $package --noconfirm"
       else
         sudo -u aurinstallfromroothelper bash -c "cd ~ && git clone https://aur.archlinux.org/$package.git && cd $package && makepkg -si --noconfirm"
       fi
@@ -42,11 +42,7 @@ aur_install () {
 
   userdel -r aurinstallfromroothelper
 }
-aur_install yay google-chrome github-desktop jetbrains-toolbox
-
-# Apply Chrome dark theme
-perl -i -pe 's/(^Exec.+?stable[^-\n]*) --force-dark-mode$/\1/g' /usr/share/applications/google-chrome.desktop
-perl -i -pe 's/(^Exec.+?stable[^-\n]*$)/\1 --enable-features=WebUIDarkMode --force-dark-mode/g' /usr/share/applications/google-chrome.desktop
+aur_install yay google-chrome github-desktop jetbrains-toolbox pfetch
 
 # Execute per user
 getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name password uid gid gecos home shell
@@ -56,6 +52,9 @@ getent passwd | while IFS=: read -r name _ uid _ _ home shell; do # name passwor
       if [ "$uid" -ne 0 ]; then
         # Install terminator
         su -c "wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/terminator-plasma-install/install.sh | bash" "$name"
+
+        # Apply Chrome dark theme
+        wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/ChromeDarkTheme/install.sh | bash
 
         # Install Orchis theme
         mkdir -p ~/TemporaryOrchisPlasmaThemeInstallDirectory
