@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Braille Unicode</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js"></script>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="mainContainer">
+    <h1 id="title">Braille Unicode</h1>
+    <div class="checkboxContainer">
+        <div id="checkboxes">
+            <div><input type="checkbox" id="cb1"/><label for="cb1"></label></div>
+            <div><input type="checkbox" id="cb4"/><label for="cb4"></label></div>
+            <div><input type="checkbox" id="cb2"/><label for="cb2"></label></div>
+            <div><input type="checkbox" id="cb5"/><label for="cb5"></label></div>
+            <div><input type="checkbox" id="cb3"/><label for="cb3"></label></div>
+            <div><input type="checkbox" id="cb6"/><label for="cb6"></label></div>
+            <div><input type="checkbox" id="cb7"/><label for="cb7"></label></div>
+            <div><input type="checkbox" id="cb8"/><label for="cb8"></label></div>
+        </div>
+        <div id="output">
+            <div><span>Character: </span><span id="charOut"></span></div>
+            <button id="charCopy">Copy Character</button>
+            <div><span>Unicode: </span><span id="codeOut"></span></div>
+            <button id="codeCopy">Copy Unicode</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

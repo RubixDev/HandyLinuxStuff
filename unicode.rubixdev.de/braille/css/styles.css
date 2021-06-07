@@ -1,0 +1,82 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+}
+
+body {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background-color: #2f3136;
+}
+
+#title {
+    text-align: center;
+}
+
+#codeOut {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+button {
+    padding: .5rem 0;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    background-color: #5865f2;
+    transition-duration: .2s;
+}
+
+button:hover {
+    background-color: #4752c4;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 .125rem #2f3136, 0 0 0 .25rem #5865f2;
+}
+
+button:hover:focus {
+    box-shadow: 0 0 0 .125rem #2f3136, 0 0 0 .25rem #4752c4;
+}
+
+.checkboxContainer {
+    display: flex;
+    gap: 3rem;
+}
+
+#output {
+    display: grid;
+    align-items: center;
+    min-width: 10rem;
+}
+
+#checkboxes {
+    display: inline-grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    max-width: 6rem;
+}
+
+#checkboxes input {
+    display: none;
+}
+
+#checkboxes label {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: #40444b;
+    box-shadow: 0 0 0 .125rem #000;
+    display: block;
+}
+
+#checkboxes input:checked ~ label {
+    background-color: #b9bbbe;
+}
