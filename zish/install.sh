@@ -24,26 +24,38 @@ git --version > /dev/null || {
 }
 
 # Install Oh My Zsh
+echo -e "$(NORMAL 6)Installing oh-my-zsh$(RESET)"
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || exit 1
 }
+echo -e "$(NORMAL 2)..done$(RESET)"
 
 # Install necessary plugins
+echo -e "$(NORMAL 6)Installing zsh-autosuggestions$(RESET)"
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions || exit 1
+echo -e "$(NORMAL 2)..done$(RESET)"
+echo -e "$(NORMAL 6)Installing zsh-history-substring-search$(RESET)"
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search || exit 1
+echo -e "$(NORMAL 2)..done$(RESET)"
+echo -e "$(NORMAL 6)Installing zsh-syntax-highlighting$(RESET)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting || exit 1
+echo -e "$(NORMAL 2)..done$(RESET)"
 
 # Install theme
+echo -e "$(NORMAL 6)Installing zish theme$(RESET)"
 wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/zish/zish.zsh-theme > ~/.oh-my-zsh/custom/themes/zish.zsh-theme || {
   curl -fsSL https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/zish/zish.zsh-theme > ~/.oh-my-zsh/custom/themes/zish.zsh-theme || exit 1
 }
+echo -e "$(NORMAL 2)..done$(RESET)"
 
 # Apply plugins
+echo -e "$(NORMAL 6)Configuring ~/.zshrc$(RESET)"
 perl -i -p -e 's/^(plugins=\(.*?)\)/\1 zsh-autosuggestions history-substring-search zsh-syntax-highlighting)/g' ~/.zshrc || exit 1
 
 # Set theme
 perl -i -p -e 's/^ZSH_THEME.*$/ZSH_THEME="zish"/g' ~/.zshrc || exit 1
 echo "ZSH_AUTOSUGGEST_STRATEGY=(history completion)" >> ~/.zshrc || exit 1
+echo "ZSH_AUTOSUGGEST_USE_ASYNC='42'" >> ~/.zshrc || exit 1
 
 echo "ZSH_HIGHLIGHT_STYLES[arg0]=fg=4" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[command]=fg=4" >> ~/.zshrc || exit 1
@@ -56,6 +68,7 @@ echo "ZSH_HIGHLIGHT_STYLES[path]=fg=12" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=5" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=208,bold" >> ~/.zshrc || exit 1
 echo "ZSH_HIGHLIGHT_STYLES[assign]=fg=14" >> ~/.zshrc || exit 1
+echo -e "$(NORMAL 2)..done$(RESET)"
 
 
-echo -e "$(NORMAL 2)Installation finished.$(NORMAL) You can set zsh as your default shell using 'chsh -s $(which zsh)'$(RESET)"
+echo -e "$(BOLD 2)Installation finished.$(NORMAL) You can set zsh as your default shell using 'chsh -s $(which zsh)'$(RESET)"
