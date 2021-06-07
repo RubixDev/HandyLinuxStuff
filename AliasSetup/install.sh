@@ -1,6 +1,6 @@
 #!/bin/bash
 
-add_alias() { echo -e "alias $1='$2'" >> ~/.zshrc; }
+add_alias() { echo -e "alias $1='$2'" >> ~/.config/aliasrc; }
 
 add_alias tmux 'tmux -2'
 add_alias zalias 'vim ~/.zshrc'
@@ -18,3 +18,6 @@ add_alias lelcat 'bash -c "$(wget -O- https://raw.githubusercontent.com/RubixDev
 # shellcheck disable=SC2016
 add_alias cheat 'f () { curl -s "cheat.sh/$1" | less; }; f'
 add_alias pac 'sudo pacman'
+
+perl -i -pe 's/source ~\/\.config\/aliasrc//g' ~/.zshrc
+echo "source ~/.config/aliasrc" >> ~/.zshrc
