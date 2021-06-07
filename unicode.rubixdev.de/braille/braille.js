@@ -1,7 +1,7 @@
 let brailleCode = '00000000'
 
 window.onload = function () {
-    const cbs = document.getElementById('checkboxes').children
+    const cbs = document.getElementById('checkboxContainer').children
     for (let cbIndex = 0; cbIndex < cbs.length; cbIndex++) {
         const cb = cbs[cbIndex]
         cb.firstChild.addEventListener('input', function () {

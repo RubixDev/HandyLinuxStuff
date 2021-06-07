@@ -6,11 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Braille Unicode</title>
+    <title>Pipes Unicode</title>
 
     <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="braille.css">
-    <script src="braille.js"></script>
+    <link rel="stylesheet" href="pipes.css">
+    <script src="pipes.js"></script>
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,17 +19,13 @@
 </head>
 <body>
 <div class="mainContainer">
-    <h1 id="title">Braille Unicode</h1>
+    <h1 id="title">Pipes Unicode</h1>
     <div class="contentContainer">
-        <div id="checkboxContainer">
-            <div><input type="checkbox" id="cb1"/><label for="cb1"></label></div>
-            <div><input type="checkbox" id="cb4"/><label for="cb4"></label></div>
-            <div><input type="checkbox" id="cb2"/><label for="cb2"></label></div>
-            <div><input type="checkbox" id="cb5"/><label for="cb5"></label></div>
-            <div><input type="checkbox" id="cb3"/><label for="cb3"></label></div>
-            <div><input type="checkbox" id="cb6"/><label for="cb6"></label></div>
-            <div><input type="checkbox" id="cb7"/><label for="cb7"></label></div>
-            <div><input type="checkbox" id="cb8"/><label for="cb8"></label></div>
+        <div id="buttonContainer">
+            <button id="pb1" class="pipeButton pipeButtonOff"></button>
+            <button id="pb2" class="pipeButton pipeButtonThick"></button>
+            <button id="pb3" class="pipeButton"></button>
+            <button id="pb4" class="pipeButton pipeButtonDouble"></button>
         </div>
         <div id="output">
             <div><span>Character: </span><span id="charOut"></span></div>

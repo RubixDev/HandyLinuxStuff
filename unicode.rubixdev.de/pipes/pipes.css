@@ -1,0 +1,70 @@
+#buttonContainer {
+    position: relative;
+    width: 9rem;
+    height: 9rem;
+}
+
+.pipeButton {
+    width: 1rem;
+    height: 4rem;
+    border: none;
+    cursor: pointer;
+    transition-duration: 150ms;
+    position: absolute;
+}
+
+.pipeButton:hover {
+    background-color: #b9bbbe;
+}
+
+.pipeButtonThick,
+.pipeButtonDouble {
+    width: 1.5rem;
+}
+
+.pipeButtonDouble::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 33%;
+    background-color: #2f3136;
+    top: 0;
+    left: calc(100% / 3);
+}
+
+.pipeButtonOff {
+    opacity: 20%;
+}
+
+#pb1, #pb4 {
+    left: 4rem;
+}
+
+#pb2, #pb3 {
+    transform: rotate(90deg);
+    top: 2.5rem;
+}
+
+#pb2 {
+    left: 1.5rem;
+}
+
+#pb3 {
+    right: 1.5rem;
+}
+
+#pb4 {
+    bottom: 0;
+}
+
+#pb2.pipeButtonThick, #pb2.pipeButtonDouble {
+    left: 1.25rem;
+}
+
+#pb3.pipeButtonThick, #pb3.pipeButtonDouble {
+    right: 1.25rem;
+}
+
+#pb1.pipeButtonThick, #pb1.pipeButtonDouble, #pb4.pipeButtonThick, #pb4.pipeButtonDouble {
+    left: 3.75rem;
+}
