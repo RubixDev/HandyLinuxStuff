@@ -22,16 +22,6 @@ String.prototype.reverse = function () {
     return this.split("").reverse().join("")
 }
 
-function copyText(text) {
-    const temp = document.createElement('textarea');
-    temp.innerHTML = text;
-    document.body.appendChild(temp);
-    temp.select();
-    temp.setSelectionRange(0, 99999);
-    document.execCommand('copy');
-    document.body.removeChild(temp)
-}
-
 function update() {
     const brailleCharCode = parseInt(brailleCode.reverse(), 2) + 0x2800
     const brailleChar = String.fromCharCode(brailleCharCode)
