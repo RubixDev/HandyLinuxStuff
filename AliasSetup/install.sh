@@ -18,6 +18,8 @@ add_alias lelcat 'bash -c "$(wget -O- https://raw.githubusercontent.com/RubixDev
 # shellcheck disable=SC2016
 add_alias cheat 'f () { curl -s "cheat.sh/$1" | less; }; f'
 add_alias pac 'sudo pacman'
+add_alias tswatch 'tsc --watch --preserveWatchOutput'
+add_alias tsinit 'wget https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/WebDev/minify.sh && wget https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/WebDev/tsconfig.json'
 
 perl -i -pe 's/source ~\/\.config\/aliasrc//g' ~/.zshrc
 echo "source ~/.config/aliasrc" >> ~/.zshrc
