@@ -3,7 +3,7 @@ xkb_symbols "us_de" {
     include "us(basic)"
     include "eurosign(e)"
 
-    name[Group1]= "QWERTY with german Umlaut keys";
+    name[Group1]= "QWERTY with German Umlaut keys";
 
     key <AC01> {[ a,          A,           adiaeresis,    Adiaeresis     ]};
     key <AD09> {[ o,          O,           odiaeresis,    Odiaeresis     ]};

@@ -1,5 +1,5 @@
 # US-DE Keyboard Layout
-A QWERTY layout with german Umlaut keys
+A QWERTY layout with German Umlaut keys
 
 ## Layout
 ```
@@ -23,15 +23,19 @@ A QWERTY layout with german Umlaut keys
 
 ## Installation
 ### Linux
-#### 1.
-Execute one of these commands:
+#### Step 1
+Run the install script with following command:
+
 ```bash
-wget -O- https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/US-DE_Keyboard_Layout/install.sh | sudo bash
-``` 
-#### 2.
+sudo bash -c "$(curl -sSL https://raw.githubusercontent.com/RubixDev/HandyLinuxStuff/main/us_de_layout/install.sh)"
+```
+
+> Note: You can substitute `curl -sSL` for `wget -O-` when needed
+
+#### Step 2
 Select the layout in your system settings
 
 ### Windows
-1. Download [WindowsSetup.zip](https://github.com/RubixDev/HandyLinuxStuff/raw/main/US-DE_Keyboard_Layout/WindowsSetup.zip)
+1. Download [WindowsSetup.zip](https://github.com/RubixDev/HandyLinuxStuff/raw/main/us_de_layout/WindowsSetup.zip)
 2. Extract the downloaded file
 3. Run the installer suited for your system
